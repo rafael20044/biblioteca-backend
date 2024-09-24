@@ -43,7 +43,7 @@ public class AdmiControl {
         return ResponseEntity.created(new URI("/api/admi/save")).build();
     }
     
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{cedula}")
     public ResponseEntity<?> actualizar(@RequestBody AdmiDTO admidDto,@PathVariable String cedula ){
         Optional<Admi> OpAdmi = repo.buscar(cedula);
         if (OpAdmi.isPresent()) {
@@ -52,7 +52,7 @@ public class AdmiControl {
             admi.setNombre(admidDto.getNombre());
             admi.setContraseña(admidDto.getContraseña());
             repo.guardar(admi);
-            ResponseEntity.ok();
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
     }
@@ -68,7 +68,7 @@ public class AdmiControl {
         return ResponseEntity.ok(listaDTO);
     }
     
-    @GetMapping("/find/{id}")
+    @GetMapping("/find/{cedula}")
     public ResponseEntity<?> buscar(@PathVariable String cedula){
         Optional<Admi> Opadmi = repo.buscar(cedula);
         if (Opadmi.isPresent()) {
@@ -83,7 +83,7 @@ public class AdmiControl {
         return ResponseEntity.notFound().build();
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{cedula}")
     public ResponseEntity<?> borrar(@PathVariable String cedula){
         repo.borrar(cedula);
         return ResponseEntity.ok().build();
