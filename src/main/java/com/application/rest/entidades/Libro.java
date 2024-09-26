@@ -54,8 +54,4 @@ public class Libro {
     
     @Column(name = "cantidadActual")
     private Integer cantidadActual;
-    
-    @ManyToMany( mappedBy = "librosPrestados",cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<User> librosPrestados;
 }

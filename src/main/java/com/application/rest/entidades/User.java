@@ -7,9 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -48,17 +47,12 @@ public class User {
     @Column(name = "telefono")
     private String telefono;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-        @JoinTable(
-        name = "usuario_libro", // Nombre de la tabla intermedia
-        joinColumns = @JoinColumn(name = "usuario_id"), // Nombre de la columna en la tabla intermedia que se refiere a Usuario
-        inverseJoinColumns = @JoinColumn(name = "libro_id") // Nombre de la columna en la tabla intermedia que se refiere a Libro
-    )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Libro> librosPrestados;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "puesto_nombre")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "puesto_nombre", referencedColumnName = "nombre")
     @JsonIgnore
     private Puesto puesto;
 
