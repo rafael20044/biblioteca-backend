@@ -1,15 +1,10 @@
 package com.application.rest.entidades;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,7 +39,7 @@ public class Libro {
     
     @Lob
     @Column(name = "imagen")
-    private byte[] imagen;
+    private byte bytesImagen[];
     
     @Column(name = "unidades")
     private Integer unidades;

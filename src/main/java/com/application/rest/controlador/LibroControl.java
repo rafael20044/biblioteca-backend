@@ -5,10 +5,12 @@ import com.application.rest.entidades.Libro;
 import com.application.rest.servicios.ILibroServicio;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Rafael Barragán Acevedo
  */
+
 @RestController
 @RequestMapping("/api/libro")
+@CrossOrigin(origins = "http://localhost:4321")
 public class LibroControl {
 
     @Autowired
@@ -36,11 +40,11 @@ public class LibroControl {
         }
         Libro libro = Libro.builder()
                 .autor(libroDto.getAutor())
-                .cantidadActual(libroDto.getCantidadActual())
+                .cantidadActual(libroDto.getUnidades())
                 .categoria(libroDto.getCategoria())
                 .descripcion(libroDto.getDescripcion())
                 .idioma(libroDto.getIdioma())
-                .imagen(libroDto.getImagen())
+                .bytesImagen(libroDto.getBytesImagen())
                 .prestados(libroDto.getPrestados())
                 .titulo(libroDto.getTitulo())
                 .unidades(libroDto.getUnidades())
@@ -59,7 +63,7 @@ public class LibroControl {
             libro.setCategoria(libroDto.getCategoria());
             libro.setDescripcion(libroDto.getDescripcion());
             libro.setIdioma(libroDto.getIdioma());
-            libro.setImagen(libroDto.getImagen());
+            libro.setBytesImagen(libroDto.getBytesImagen());
             libro.setPrestados(libroDto.getPrestados());
             libro.setTitulo(libroDto.getTitulo());
             libro.setUnidades(libroDto.getUnidades());
@@ -77,7 +81,7 @@ public class LibroControl {
                 .categoria(libro.getCategoria())
                 .descripcion(libro.getDescripcion())
                 .idioma(libro.getIdioma())
-                .imagen(libro.getImagen())
+                .bytesImagen(libro.getBytesImagen())
                 .prestados(libro.getPrestados())
                 .titulo(libro.getTitulo())
                 .unidades(libro.getUnidades())
@@ -97,7 +101,7 @@ public class LibroControl {
                 .categoria(libro.getCategoria())
                 .descripcion(libro.getDescripcion())
                 .idioma(libro.getIdioma())
-                .imagen(libro.getImagen())
+                .bytesImagen(libro.getBytesImagen())
                 .prestados(libro.getPrestados())
                 .titulo(libro.getTitulo())
                 .unidades(libro.getUnidades())

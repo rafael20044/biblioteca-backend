@@ -25,7 +25,7 @@ public class LibroDTO {
     
     private String descripcion;
     
-    private byte[] imagen;
+    private byte bytesImagen[];
     
     private Integer unidades;
     
